@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//非ログイントップページ
+Route::get('/', [AuthController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login']);
+
+//会員登録
+Route::get('/user/register',[UserController::class,'index']);
+Route::post('/user/register',[UserController::class,'register']);
+
+//買い物リスト
+Route::get('/list',[ShoppingListController::class, 'list']);
