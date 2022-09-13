@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,15 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         // データの取得
-        $validatedData = $request->validated();
-        var_dump($validatedData); exit;
+        $datam = $request->validated();
+        
+        //認証
+        if (Auth::attempt($datam) === false){
+            return back()
+                    ->withInput()
+                    ->withErrors(['auth' => 'emailかパスワードに誤りがあります。',]);
+        }
+        $request->session()->regenerate();
+        return redirect()->intended('/list');
     }
 }
