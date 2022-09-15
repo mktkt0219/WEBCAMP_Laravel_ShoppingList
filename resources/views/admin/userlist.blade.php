@@ -3,7 +3,7 @@
 @section('title')(ユーザ一覧画面)@endsection
 
 @section('contents')
-        <a href ="/admin">管理画面TOP</a><br>
+        <a href ="/admin/top">管理画面TOP</a><br>
         <a href ="/admin/user/list">ユーザ一覧</a><br>
         <a href ="/admin/logout">ログアウト</a><br>
 
