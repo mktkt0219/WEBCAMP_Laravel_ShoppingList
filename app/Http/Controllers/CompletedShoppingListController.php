@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\completed_shopping_lists as CompleteShoppinglistModel;
+use App\Models\Completed_shopping_list as CompleteShoppinglistModel;
 
 class CompletedShoppingListController extends Controller
 {

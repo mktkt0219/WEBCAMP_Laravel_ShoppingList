@@ -8,7 +8,7 @@ use App\Models\Shopping_list as ShoppinglistModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\completed_shopping_lists as CompleteShoppinglistModel;
+use App\Models\Completed_shopping_list as CompleteShoppinglistModel;
 
 class ShoppingListController extends Controller
 {
@@ -84,7 +84,7 @@ class ShoppingListController extends Controller
             DB::rollBack();
         }
         
-        $request->session()->flash('shoppinglist_completed_failure', true);
+        $request->session()->flash('shoppinglist_completed_success', true);
         return redirect('/shopping_list/list');        
     }
 }

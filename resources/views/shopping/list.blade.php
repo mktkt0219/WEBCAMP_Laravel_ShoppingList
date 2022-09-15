@@ -10,7 +10,7 @@
             @if (session('shoppinglist_delete_success') == true)
                 「買うもの」を削除しました！！<br>
             @endif
-            @if (session('shoppinglist_complete_success') == true)
+            @if (session('shoppinglist_completed_success') == true)
                 「買うもの」を完了にしました！！<br>
             @endif
          @if ($errors->any())

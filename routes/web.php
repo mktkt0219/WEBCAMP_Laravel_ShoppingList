@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShoppingListController;
 use App\Http\Controllers\CompletedShoppingListController;
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,8 @@ use App\Http\Controllers\CompletedShoppingListController;
 |
 */
 
-//非ログイントップページ
-Route::get('/', [AuthController::class, 'index']);
+//買い物画面
+Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
 
 //会員登録
@@ -41,4 +43,16 @@ Route::middleware(['auth'])->group(function () {
     
     //ログアウト
     Route::get('/logout', [AuthController::class, 'logout']);
+    });
+    
+//管理画面
+Route::prefix('/admin')->group(function () {
+    Route::get('', [AdminAuthController::class, 'index'])->name('admin.index');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
+    // 認可
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
+    });
+    // ログアウト
+    Route::get('/logout', [AdminAuthController::class, 'logout']);    
 });
