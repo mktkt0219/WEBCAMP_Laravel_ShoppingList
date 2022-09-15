@@ -15,8 +15,7 @@ class AuthController extends Controller
         return view('index');
     }
     
-    //入力用データを受け取る
-    
+    //ログイン
     public function login(LoginRequest $request)
     {
         // データの取得
@@ -29,6 +28,13 @@ class AuthController extends Controller
                     ->withErrors(['auth' => 'emailかパスワードに誤りがあります。',]);
         }
         $request->session()->regenerate();
-        return redirect()->intended('/list');
+        return redirect()->intended('/shopping_list/list');
+    }
+    
+    //ログアウト
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
